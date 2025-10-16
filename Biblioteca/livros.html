@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Livros - Biblioteca UniFECAF</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav container">
+      <div class="logo">Biblioteca <span>UniFECAF</span></div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="livros.html" class="active">Livros</a></li>
+          <li><a href="unidades.html">Unidades</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="login.html" class="btn primary">Entrar</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Menu mobile lateral -->
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">×</button>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="livros.html" class="active">Livros</a></li>
+      <li><a href="unidades.html">Unidades</a></li>
+      <li><a href="contato.html">Contato</a></li>
+      <li><a href="login.html" class="btn primary">Entrar</a></li>
+    </ul>
+  </aside>
+
+  <!-- Conteúdo -->
+  <main class="container section">
+    <h1 class="center">Catálogo de Livros</h1>
+    <p class="lead center">Explore nosso acervo digital e físico.</p><br>
+
+    <!-- Filtros -->
+    <div class="filters card reveal-up">
+      <input id="search" type="search" placeholder="Buscar por título ou autor...">
+      <select id="filterCategory">
+        <option value="">Todas as categorias</option>
+        <option>Ciências</option>
+        <option>Humanas</option>
+        <option>Tecnologia</option>
+      </select>
+      <select id="sortBy">
+        <option value="relevance">Mais relevantes</option>
+        <option value="title">Título (A–Z)</option>
+        <option value="year">Ano (desc)</option>
+      </select>
+    </div><br>
+
+    <!-- Grid de Livros -->
+    <div class="grid books-grid" id="booksGrid"></div>
+  </main> <br></br>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">Biblioteca <span>UniFECAF</span></div>
+        <p>© <span id="year3"></span> Biblioteca UniFECAF</p>
+      </div>
+      <div>
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Telefone</h4>
+        <p>+55 (11) 1234-5678</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="bookModal">
+    <div class="modal-content">
+      <button class="close-modal" id="closeModal">✖</button>
+      <h3 id="modalTitle">Título do Livro</h3>
+      <p id="modalInfo">Informações do livro aqui...</p>
+      <button class="btn primary" id="modalOk">OK</button>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    const books = [
+      {id:1,title:'Introdução à Engenharia',author:'P. Silva',year:2020,category:'Tecnologia',cover:'https://picsum.photos/seed/book1/300/220'},
+      {id:2,title:'História do Brasil',author:'M. Souza',year:2015,category:'Humanas',cover:'https://picsum.photos/seed/book2/300/220'},
+      {id:3,title:'Matemática Básica',author:'A. Pereira',year:2018,category:'Ciências',cover:'https://picsum.photos/seed/book3/300/220'},
+      {id:4,title:'Algoritmos e Programação',author:'L. Costa',year:2022,category:'Tecnologia',cover:'https://picsum.photos/seed/book4/300/220'},
+      {id:5,title:'Psicologia Contemporânea',author:'R. Lima',year:2019,category:'Humanas',cover:'https://picsum.photos/seed/book5/300/220'}
+    ];
+
+    const grid = document.getElementById('booksGrid');
+    const searchInput = document.getElementById('search');
+    const filterCategory = document.getElementById('filterCategory');
+    const sortBy = document.getElementById('sortBy');
+
+    // Modal
+    const modal = document.getElementById('bookModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalInfo = document.getElementById('modalInfo');
+    const closeModal = document.getElementById('closeModal');
+    const modalOk = document.getElementById('modalOk');
+
+    function renderBooks(list) {
+      grid.innerHTML = '';
+      list.forEach(b=>{
+        const el = document.createElement('div');
+        el.className = 'card book-card reveal-up';
+        el.innerHTML = `
+          <img src="${b.cover}" alt="${b.title}">
+          <h4>${b.title}</h4>
+          <small>${b.author} • ${b.year}</small>
+          <p class="tag">${b.category}</p>
+          <div class="card-actions">
+            <button class="btn ghost btn-view">Ver</button>
+            <button class="btn primary btn-reserve">Reservar</button>
+          </div>
+        `;
+        grid.appendChild(el);
+
+        // Botão Ver → abre modal com detalhes
+        el.querySelector('.btn-view').addEventListener('click', () => {
+          modalTitle.textContent = b.title;
+          modalInfo.textContent = `Autor: ${b.author}\nAno: ${b.year}\nCategoria: ${b.category}`;
+          modal.classList.add('active');
+        });
+
+        // Botão Reservar → abre modal de confirmação
+        el.querySelector('.btn-reserve').addEventListener('click', () => {
+          modalTitle.textContent = "Reserva confirmada!";
+          modalInfo.textContent = `✅ O livro "${b.title}" foi reservado com sucesso.`;
+          modal.classList.add('active');
+        });
+      });
+    }
+
+    function applyFilters() {
+      let result = books.slice();
+      const q = searchInput.value.trim().toLowerCase();
+      if (q) result = result.filter(b=> (b.title + ' ' + b.author).toLowerCase().includes(q));
+      if (filterCategory.value) result = result.filter(b=>b.category === filterCategory.value);
+      if (sortBy.value === 'title') result.sort((a,b)=>a.title.localeCompare(b.title));
+      if (sortBy.value === 'year') result.sort((a,b)=>b.year - a.year);
+      renderBooks(result);
+    }
+
+    searchInput.addEventListener('input', applyFilters);
+    filterCategory.addEventListener('change', applyFilters);
+    sortBy.addEventListener('change', applyFilters);
+
+    renderBooks(books);
+
+    // Modal fechar
+    closeModal.addEventListener('click', () => modal.classList.remove('active'));
+    modalOk.addEventListener('click', () => modal.classList.remove('active'));
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.classList.remove('active');
+    });
+
+    document.getElementById('year3').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

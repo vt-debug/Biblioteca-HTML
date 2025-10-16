@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contato - Biblioteca UniFECAF</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav container">
+      <div class="logo">Biblioteca <span>UniFECAF</span></div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="livros.html">Livros</a></li>
+          <li><a href="unidades.html">Unidades</a></li>
+          <li><a href="contato.html" class="active">Contato</a></li>
+          <li><a href="login.html" class="btn primary">Entrar</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Menu mobile lateral -->
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">×</button>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="livros.html">Livros</a></li>
+      <li><a href="unidades.html">Unidades</a></li>
+      <li><a href="contato.html" class="active">Contato</a></li>
+      <li><a href="login.html" class="btn primary">Entrar</a></li>
+    </ul>
+  </aside>
+
+  <!-- Conteúdo -->
+  <main class="container section">
+    <h1 class="center">Fale Conosco</h1>
+    <p class="lead center">Tem dúvida ou sugestão? Envie uma mensagem e nossa equipe retornará em até 2 dias úteis.</p><br></br>
+
+    <div class="grid contact-grid">
+      <!-- Formulário -->
+      <form id="contatoForm" class="card reveal-up">
+        <label for="name">Nome</label>
+        <input id="name" type="text" required>
+
+        <label for="email">E-mail</label>
+        <input id="email" type="email" required>
+
+        <label for="subject">Assunto</label>
+        <input id="subject" type="text">
+
+        <label for="message">Mensagem</label>
+        <textarea id="message" required></textarea>
+
+        <div class="form-actions">
+          <button type="submit" class="btn primary">Enviar</button>
+          <button type="reset" class="btn ghost">Limpar</button>
+        </div>
+      </form>
+
+      <!-- Informações de contato -->
+      <aside class="card reveal-up">
+        <h3>Outros canais</h3>
+        <p><strong>Email:</strong> biblioteca@unifecaf.edu.br</p>
+        <p><strong>Telefone:</strong> +55 (11) 1234-5678</p>
+        <p><strong>WhatsApp:</strong> (11) 98765-4321</p>
+
+        <h4>Redes sociais</h4>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">Facebook</a><br>
+          <a href="#" aria-label="Instagram">Instagram</a><br>
+          <a href="#" aria-label="YouTube">YouTube</a>
+        </div>
+      </aside>
+    </div>
+  </main> <br>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">Biblioteca <span>UniFECAF</span></div>
+        <p>© <span id="year5"></span> Biblioteca UniFECAF</p>
+      </div>
+      <div>
+        <h4>Links</h4>
+        <ul>
+          <li><a href="livros.html">Catálogo</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Endereço</h4>
+        <p>Av. Exemplo, 123 — Campus Central</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('contatoForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Obrigado! Sua mensagem foi enviada com sucesso.');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

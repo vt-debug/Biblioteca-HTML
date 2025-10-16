@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Biblioteca UniFECAF</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="nav container">
+      <div class="logo">Biblioteca <span>UniFECAF</span></div>
+      <nav class="nav-links">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="livros.html">Livros</a></li>
+          <li><a href="unidades.html">Unidades</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="login.html" class="active btn primary">Entrar</a></li>
+        </ul>
+      </nav>
+      <button class="hamburger" aria-label="Abrir menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Menu mobile lateral -->
+  <aside class="mobile-menu" id="mobileMenu">
+    <button class="close-btn" id="closeMenu">×</button>
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="sobre.html">Sobre</a></li>
+      <li><a href="livros.html">Livros</a></li>
+      <li><a href="unidades.html">Unidades</a></li>
+      <li><a href="contato.html">Contato</a></li>
+      <li><a href="login.html" class="active btn primary">Entrar</a></li>
+    </ul>
+  </aside>
+
+  <!-- Conteúdo -->
+  <main class="container section" style="max-width:480px;">
+    <h1 class="center">Acesso ao Portal</h1>
+    <form class="card reveal-up" id="loginForm">
+      <label for="user">E-mail ou RA</label>
+      <input id="user" type="text" required>
+
+      <label for="pass">Senha</label>
+      <input id="pass" type="password" required>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Entrar</button>
+        <a href="#" class="btn ghost">Esqueci a senha</a>
+      </div> 
+    </form><br></br>
+    <p class="muted center">Se você ainda não tem acesso, entre em contato com a secretaria.</p>
+  </main><br></br>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="logo">Biblioteca <span>UniFECAF</span></div>
+        <p>© <span id="year6"></span> Biblioteca UniFECAF</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', e=>{
+      e.preventDefault();
+      alert('Login simulado com Sucesso.');
+    });
+  </script>
+</body>
+</html>
